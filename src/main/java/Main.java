@@ -41,6 +41,7 @@ public class Main {
 
   public static void do3() {
     int a = 1 + 1;
+    int b = 2 + 2;
     ArrayList<Integer> arrayList = new ArrayList<>();
     for (int i = 0; i < 50; i++) {
       Lock lock = new ReentrantLock();
