@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.touchgraph:TGGraphLayout:UNKNOWN">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/touchgraph/TGGraphLayout/UNKNOWN/TGGraphLayout-UNKNOWN.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/touchgraph/TGGraphLayout/UNKNOWN/TGGraphLayout-UNKNOWN-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/touchgraph/TGGraphLayout/UNKNOWN/TGGraphLayout-UNKNOWN-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
