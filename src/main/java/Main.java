@@ -29,6 +29,7 @@ public class Main {
   public static void main(String[] args) {}
 
   public static void createLink() {
+
     Path filePath = Paths.get("C:", "File_Manager_Test", "file.txt");
     Path sibling = filePath.resolveSibling("symbolic_link.txt");
     try {
@@ -39,6 +40,7 @@ public class Main {
   }
 
   public static void do3() {
+    int a = 1 + 1;
     ArrayList<Integer> arrayList = new ArrayList<>();
     for (int i = 0; i < 50; i++) {
       Lock lock = new ReentrantLock();
