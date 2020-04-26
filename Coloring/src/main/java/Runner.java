@@ -1,30 +1,70 @@
 
+import org.jgrapht.Graph;
+import org.jgrapht.Graphs;
+import org.jgrapht.graph.DefaultEdge;
+import org.jgrapht.graph.DefaultUndirectedGraph;
 import parcs.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Runner implements AM {
+    private static int[] colors = {0, 1, 2, 3};
+
     @Override
     public void run(AMInfo info) {
 
-        long n = info.parent.readLong();
-	System.out.printf("Received number = %d\n", n);
-        long result;
-        if (n == 1) {
-            result = 1;
+        DefaultUndirectedGraph<Integer, DefaultEdge> graph = (DefaultUndirectedGraph<Integer, DefaultEdge>) info.parent.readObject();
+        HashMap<Integer, Integer> colorMap = (HashMap<Integer, Integer>) info.parent.readObject();
+        int currentVertex = info.parent.readInt();
+
+        System.out.printf("Current vertex = %d\n", currentVertex);
+        System.out.printf("Current color map = %s\n", colorMap);
+
+        if (currentVertex > graph.vertexSet().size()) {
+            info.parent.write(1);
+            info.parent.write(colorMap);
         } else {
-            point p1 = info.createPoint();
-            channel c1 = p1.createChannel();
-            p1.execute("Runner");
-            c1.write(n - 1);
+            List<channel> channels = new ArrayList<>();
+            for (int color : colors) {
+                if (canUse(colorMap, graph, currentVertex, color)) {
+                    colorMap.put(currentVertex, color);
 
-            point p2 = info.createPoint();
-            channel c2 = p2.createChannel();
-            p2.execute("Runner");
-            c2.write(n - 1);
+                    point p = info.createPoint();
+                    channel c = p.createChannel();
+                    p.execute("Runner");
 
-            long r1 = c1.readLong();
-            long r2 = c2.readLong();
-            result = r1 + r2;
+                    c.write(graph);
+                    c.write(colorMap);
+                    c.write(currentVertex + 1);
+
+                    channels.add(c);
+
+                    colorMap.remove(currentVertex);
+                }
+            }
+
+            for (channel c : channels) {
+                int res = c.readInt();
+                if (res > 0) {
+                    HashMap<Integer, Integer> resMap = (HashMap<Integer, Integer>) c.readObject();
+                    info.parent.write(1);
+                    info.parent.write(resMap);
+                    return;
+                }
+            }
+            info.parent.write(0);
         }
-        info.parent.write(result);
+    }
+
+    private boolean canUse(Map<Integer, Integer> colorMap, Graph<Integer, DefaultEdge> graph, int vertex, int color) {
+        for (int neighbor : Graphs.neighborListOf(graph, vertex)) {
+            if (colorMap.getOrDefault(neighbor, -1) == color) {
+                return false;
+            }
+        }
+        return true;
     }
 }
