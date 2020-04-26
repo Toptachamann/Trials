@@ -1,4 +1,3 @@
-package com.chudakov.parcs.java;
 
 import parcs.*;
 
@@ -11,8 +10,10 @@ public class Main {
         point p = info.createPoint();
         channel c = p.createChannel();
         p.execute("Runner");
-        c.write(15);
 
+	long number = 5;
+        c.write(number);
+	// System.out.printf("Sent number %d\n", number);
         System.out.println("Waiting for result...");
         System.out.println("Result: " + c.readLong());
         curtask.end();

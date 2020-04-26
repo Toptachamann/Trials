@@ -1,4 +1,3 @@
-package com.chudakov.parcs.java;
 
 import parcs.*;
 
@@ -7,7 +6,7 @@ public class Runner implements AM {
     public void run(AMInfo info) {
 
         long n = info.parent.readLong();
-
+	System.out.printf("Received number = %d\n", n);
         long result;
         if (n == 1) {
             result = 1;
