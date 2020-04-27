@@ -46,16 +46,22 @@ public class Runner implements AM {
                 }
             }
 
+	    HashMap<Integer, Integer> resMap = null;
+	    int finalRes = 0;
+
             for (channel c : channels) {
                 int res = c.readInt();
                 if (res > 0) {
-                    HashMap<Integer, Integer> resMap = (HashMap<Integer, Integer>) c.readObject();
-                    info.parent.write(1);
-                    info.parent.write(resMap);
-                    return;
+		    finalRes = 1;
+                    resMap = (HashMap<Integer, Integer>) c.readObject();
                 }
             }
-            info.parent.write(0);
+	    if(finalRes == 0) {
+	            info.parent.write(0);
+	    }else{
+		    info.parent.write(1);
+		    info.parent.write(resMap);
+	    }
         }
     }
 

@@ -75,7 +75,7 @@ public class Main {
 
     private static DefaultUndirectedGraph<Integer, DefaultEdge> readGraph() {
         try (BufferedReader reader = new BufferedReader(new FileReader("graph.txt"))) {
-            DefaultUndirectedGraph<Integer, DefaultEdge> graph = new DefaultUndirectedGraph<>(DefaultWeightedEdge.class);
+            DefaultUndirectedGraph<Integer, DefaultEdge> graph = new DefaultUndirectedGraph<>(DefaultEdge.class);
             String s = reader.readLine();
             int m = Integer.parseInt(s.split("\\s+")[1]);
             for (int i = 0; i < m; i++) {
