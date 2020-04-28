@@ -1,0 +1,11 @@
+<speak>
+  This is an introduction to the Google Cloud text to speech and speech to text <say-as interpret-as="characters">APIs</say-as> <break time="1s"/>.
+
+  In order to run this Jupyter Notebook, you have to complete the following prerequisites:<break time="500ms"/>
+
+  <say-as interpret-as="ordinal">1</say-as>. You have to install Google Cloud Python Client libraries.<break time="500ms"/>
+  <say-as interpret-as="ordinal">2</say-as>. You have to create both a Google Cloud account with a configured billing and a new project.<break time="500ms"/>
+  <say-as interpret-as="ordinal">3</say-as>. You have to enable corresponding <say-as interpret-as="characters">APIs</say-as> for your project.<break time="500ms"/>
+
+  Let's make a moderate emphasis. <emphasis level="moderate">You have to complete all of the prerequisites in order to run the code in this presentation</emphasis>. Once again, we will strongly emphasise: <emphasis level="strong"> all of the prerequisites</emphasis>!
+</speak>

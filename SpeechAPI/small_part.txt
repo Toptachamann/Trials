@@ -1,0 +1,3 @@
+<speak>
+  This is an introduction to the Google Cloud text to speech and speech to text <say-as interpret-as="characters">APIs</say-as> <break time="1s"/>.
+</speak>
